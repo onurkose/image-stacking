@@ -83,6 +83,7 @@ export default {
 
             onGeneratedData(data) {
                 variations.value = []
+                rowsLength.value = 0
 
                 if (data?.length) {
                     variations.value = data
