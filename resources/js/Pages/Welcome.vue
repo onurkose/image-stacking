@@ -12,7 +12,7 @@
                     <div v-for="(num, index) in rowsLength" :key="`variation-${index}`"
                          style="width: 200px; height: 200px"
                          class="border-black h-12 rounded-md flex items-center justify-center mx-auto">
-                        <canvas width="200" height="200" style="outline: 1px red dotted"
+                        <canvas width="200" height="200"
                                 :ref="el => { canvases[index] = el }"></canvas>
                     </div>
                 </div>
@@ -58,7 +58,7 @@ export default {
             canvases.value = [];
         })
 
-        function drawImages () {
+        function drawImages() {
             for (let index = 0; index < rowsLength.value; index++) {
                 const ctx = canvases.value[index].getContext('2d')
 
