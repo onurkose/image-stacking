@@ -2,7 +2,7 @@
 
 use Illuminate\Support\HtmlString;
 
-if (! function_exists('vite_assets')) {
+if (!function_exists('vite_assets')) {
     function vite_assets(): HtmlString
     {
         if (app()->environment('local')) {
@@ -22,5 +22,28 @@ if (! function_exists('vite_assets')) {
         <link rel="stylesheet" href="/build/{$manifest['resources/js/app.js']['css'][0]}">
     HTML
         );
+    }
+}
+
+if (!function_exists('combinations')) {
+    function combinations($array, &$output, $index = 0, $p = [])
+    {
+        foreach ($array[$index] as $i => $name) {
+            $copy = $p;
+            $copy[] = $name;
+            $subIndex = $index + 1;
+
+            if (isset($array[$subIndex])) {
+                combinations($array, $output, $subIndex, $copy);
+            } else {
+                foreach ($copy as $_index => $_name) {
+                    if (!isset($output[$_index])) {
+                        $output[$_index] = [];
+                    }
+
+                    $output[$_index][] = $_name;
+                }
+            }
+        }
     }
 }
